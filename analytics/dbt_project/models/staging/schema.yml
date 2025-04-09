@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: green_trip_data
+    database: qwiklabs-gcp-03-cbf79a81dd87
+    schema: my_dataset_qwiklabs_gcp
+    tables:
+      - name: kestra_ny_taxi_green_gcp_new
+      - name: kestra_ny_taxi_yellow_gcp_new
+

@@ -16,7 +16,7 @@ yellow_trip as
 
 dim_zones as 
 (
-    select * from {{ ref('dim_zones') }}
+    select * from {{ ref('dim_zones_lookup') }}
     where borough != 'Unknown'
 ),
 
@@ -25,10 +25,10 @@ trip_data as
     select * from green_trip
     union all
     select * from yellow_trip
-),
+)
 
 select 
-    trip_data.tripid,
+    trip_data.trip_id,
     trip_data.uid,
     trip_data.filename,
     trip_data.vendorid,

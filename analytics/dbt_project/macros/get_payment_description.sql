@@ -1,6 +1,6 @@
 {% macro get_payment_description(payment_type) -%}
 
-case (cast{{payment_type}} as integer)
+case cast ({{payment_type}} as integer)
 
     when 0 then 'credit card'
     when 1 then 'debit card'

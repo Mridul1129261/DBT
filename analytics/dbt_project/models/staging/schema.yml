@@ -2,9 +2,122 @@ version: 2
 
 sources:
   - name: green_trip_data
-    database: qwiklabs-gcp-03-cbf79a81dd87
+    database: qwiklabs-gcp-01-64899d733da5
     schema: my_dataset_qwiklabs_gcp
     tables:
       - name: kestra_ny_taxi_green_gcp_new
       - name: kestra_ny_taxi_yellow_gcp_new
 
+models:
+  - name: stg_green_taxi
+    description: ""
+    columns:
+      - name: trip_id
+        data_type: string
+        description: ""
+        tests:
+          - not_null:
+              severity: warn
+          - unique:
+              severity: warn
+
+      - name: uid
+        data_type: bytes
+        description: ""
+        tests:
+          - not_null:
+              severity: warn
+          - unique:
+              severity: warn
+
+      - name: filename
+        data_type: string
+        description: ""
+
+      - name: vendorid
+        data_type: int64
+        description: ""
+
+      - name: pickup_datetime
+        data_type: timestamp
+        description: ""
+
+      - name: dropoff_datetime
+        data_type: timestamp
+        description: ""
+
+      - name: store_and_fwd_flag
+        data_type: string
+        description: ""
+
+      - name: ratecodeid
+        data_type: int64
+        description: ""
+
+      - name: pulocationid
+        data_type: int64
+        description: ""
+        tests:
+          - relationships:
+              to: ref('zones_lookup')
+              field: locationid
+
+      - name: dolocationid
+        data_type: int64
+        description: ""
+
+      - name: passenger_count
+        data_type: int64
+        description: ""
+
+      - name: trip_distance
+        data_type: float64
+        description: ""
+
+      - name: fare_amount
+        data_type: float64
+        description: ""
+
+      - name: extra
+        data_type: float64
+        description: ""
+
+      - name: mta_tax
+        data_type: float64
+        description: ""
+
+      - name: tip_amount
+        data_type: float64
+        description: ""
+
+      - name: tolls_amount
+        data_type: float64
+        description: ""
+
+      - name: ehail_fee
+        data_type: float64
+        description: ""
+
+      - name: improvement_surcharge
+        data_type: float64
+        description: ""
+
+      - name: total_amount
+        data_type: float64
+        description: ""
+
+      - name: payment_type
+        data_type: int64
+        description: ""
+
+      - name: payment_description
+        data_type: string
+        description: ""
+
+      - name: trip_type
+        data_type: int64
+        description: ""
+
+      - name: congestion_surcharge
+        data_type: float64
+        description: ""
